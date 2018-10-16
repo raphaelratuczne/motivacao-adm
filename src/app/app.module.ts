@@ -1,10 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MenuComponent } from './menu/menu.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import {
   MatToolbarModule,
@@ -19,6 +16,13 @@ import {
   // MatPaginatorModule,
   // MatSortModule
 } from '@angular/material';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+import { AppComponent } from './app.component';
+import { MenuComponent } from './menu/menu.component';
+
+import { configFireBase } from './const';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,8 @@ import {
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(configFireBase),
+    AngularFireAuthModule,
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,

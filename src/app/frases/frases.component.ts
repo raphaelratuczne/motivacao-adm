@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
-import { TabelaDataSource } from './tabela-datasource';
+import { TabelaDataSource } from './frases-datasource';
 
 @Component({
-  selector: 'app-tabela',
-  templateUrl: './tabela.component.html',
-  styleUrls: ['./tabela.component.css']
+  selector: 'app-frases',
+  templateUrl: './frases.component.html',
+  styleUrls: ['./frases.component.css']
 })
-export class TabelaComponent implements OnInit {
+export class FrasesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   dataSource: TabelaDataSource;

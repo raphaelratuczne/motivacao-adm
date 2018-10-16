@@ -1,0 +1,20 @@
+
+.app-login {
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .main{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .center{
+    width: 400px;
+    margin: 10px auto;
+  }
+
+}

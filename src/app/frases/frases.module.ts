@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TabelaRoutingModule } from './tabela-routing.module';
-import { TabelaComponent } from './tabela.component';
+import { FrasesRoutingModule } from './frases-routing.module';
+import { FrasesComponent } from './frases.component';
 import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
-    TabelaRoutingModule,
+    FrasesRoutingModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule
   ],
-  declarations: [TabelaComponent]
+  declarations: [FrasesComponent]
 })
-export class TabelaModule { }
+export class FrasesModule { }

@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginModule' },
   { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
-  { path: 'tabela', loadChildren: './tabela/tabela.module#TabelaModule' },
+  { path: 'frases', loadChildren: './frases/frases.module#FrasesModule' },
   { path: '', redirectTo: 'login', pathMatch: 'full'  }
 ];
 
