@@ -18,9 +18,10 @@ import {
 } from '@angular/material';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 import { configFireBase } from './const';
 
@@ -33,6 +34,7 @@ import { configFireBase } from './const';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(configFireBase),
+    AngularFirestoreModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
     LayoutModule,

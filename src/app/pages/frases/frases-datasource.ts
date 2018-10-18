@@ -1,48 +1,25 @@
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import { Observable, /*of as observableOf,*/ merge, BehaviorSubject, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
-// TODO: Replace this with your own data model type
-export interface TabelaItem {
-  name: string;
-  id: number;
-}
-
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: TabelaItem[] = [
-  {id: 1, name: 'Hydrogen'},
-  {id: 2, name: 'Helium'},
-  {id: 3, name: 'Lithium'},
-  {id: 4, name: 'Beryllium'},
-  {id: 5, name: 'Boron'},
-  {id: 6, name: 'Carbon'},
-  {id: 7, name: 'Nitrogen'},
-  {id: 8, name: 'Oxygen'},
-  {id: 9, name: 'Fluorine'},
-  {id: 10, name: 'Neon'},
-  {id: 11, name: 'Sodium'},
-  {id: 12, name: 'Magnesium'},
-  {id: 13, name: 'Aluminum'},
-  {id: 14, name: 'Silicon'},
-  {id: 15, name: 'Phosphorus'},
-  {id: 16, name: 'Sulfur'},
-  {id: 17, name: 'Chlorine'},
-  {id: 18, name: 'Argon'},
-  {id: 19, name: 'Potassium'},
-  {id: 20, name: 'Calcium'},
-];
+import { Frase } from '../../interfaces/frase';
 
 /**
  * Data source for the Tabela view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class TabelaDataSource extends DataSource<TabelaItem> {
-  data: TabelaItem[] = EXAMPLE_DATA;
+export class TabelaDataSource extends DataSource<Frase> {
 
-  constructor(private paginator: MatPaginator, private sort: MatSort) {
+  data: Frase[] = [];
+  private s$: Subject<void> = new Subject();
+
+  constructor(private paginator: MatPaginator, private sort: MatSort, private frases$:BehaviorSubject<Frase[]>) {
     super();
+
+    this.frases$.pipe(takeUntil(this.s$)).subscribe(f => this.data = f);
   }
 
   /**
@@ -50,11 +27,12 @@ export class TabelaDataSource extends DataSource<TabelaItem> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<TabelaItem[]> {
+  connect(): Observable<Frase[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
     const dataMutations = [
-      observableOf(this.data),
+      // observableOf(this.data),
+      this.frases$,
       this.paginator.page,
       this.sort.sortChange
     ];
@@ -71,13 +49,16 @@ export class TabelaDataSource extends DataSource<TabelaItem> {
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect() {}
+  disconnect() {
+    this.s$.next();
+    this.s$.complete();
+  }
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: TabelaItem[]) {
+  private getPagedData(data: Frase[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -86,7 +67,7 @@ export class TabelaDataSource extends DataSource<TabelaItem> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: TabelaItem[]) {
+  private getSortedData(data: Frase[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -94,8 +75,8 @@ export class TabelaDataSource extends DataSource<TabelaItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'frase': return compare(a.frase, b.frase, isAsc);
+        case 'index': return compare(+a.index, +b.index, isAsc);
         default: return 0;
       }
     });
