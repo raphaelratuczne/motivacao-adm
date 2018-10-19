@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   public email: string;
   public pass: string;
 
+  public showSpinner = false;
+
   constructor(private router: Router, private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
@@ -29,7 +31,8 @@ export class LoginComponent implements OnInit {
   }
 
   public login() : void {
-    this.afAuth.auth.signInWithEmailAndPassword(this.email, this.pass);
+    this.showSpinner = true;
+    this.afAuth.auth.signInWithEmailAndPassword(this.email, this.pass).then(() => this.showSpinner = false);
   }
 
 }
