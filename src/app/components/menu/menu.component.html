@@ -9,8 +9,8 @@
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
       <!-- <a mat-list-item routerLink="/login">Login</a> -->
-      <a mat-list-item routerLink="/dashboard">Dashboard</a>
-      <a mat-list-item routerLink="/frases">Frases</a>
+      <a mat-list-item (click)="drawer.mode != 'side' ? drawer.close() : ''" routerLink="/dashboard">Dashboard</a>
+      <a mat-list-item (click)="drawer.mode != 'side' ? drawer.close() : ''" routerLink="/frases">Frases</a>
       <a mat-list-item (click)="logout()">Logout</a>
     </mat-nav-list>
   </mat-sidenav>

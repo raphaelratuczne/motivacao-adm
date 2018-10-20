@@ -24,6 +24,7 @@ export class MenuComponent {
       this.logado = au ? true : false;
       // console.log('au', au);
     });
+    this.isHandset$.subscribe(a => console.log(a));
   }
 
   logout() {
