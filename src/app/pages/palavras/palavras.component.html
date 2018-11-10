@@ -1,0 +1,55 @@
+<mat-card>
+  <mat-card-title>Palavras como sugestão para a palavra do dia</mat-card-title>
+  <div class="mat-elevation-z8">
+    <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
+      <!-- Id Column -->
+      <!-- <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let row">{{row.id}}</td>
+      </ng-container> -->
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="palavra">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Palavra</th>
+        <td mat-cell *matCellDef="let row">{{ row.palavra }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="editar">
+        <th mat-header-cell *matHeaderCellDef>Editar</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="editar(row)">
+            <mat-icon aria-label="editar">edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="excluir">
+        <th mat-header-cell *matHeaderCellDef>Excluir</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="excluir(row)">
+            <mat-icon aria-label="excluir">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <button class="botao-add" mat-fab (click)="adicionar()">
+      <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+    </button>
+
+    <mat-paginator #paginator
+        [length]="dataSource.data.length"
+        [pageIndex]="0"
+        [pageSize]="50"
+        [pageSizeOptions]="[25, 50, 100, 250]">
+    </mat-paginator>
+  </div>
+</mat-card>
+<br>
+<br>
+<br>
+<br>
+<br>

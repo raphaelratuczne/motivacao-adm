@@ -1,0 +1,10 @@
+<div class="modal-exclusao">
+  <h2 mat-dialog-title>Excluir Palavra</h2>
+  <mat-dialog-content>
+    <p>Tem certeza que deseja excluir a palavra {{ palavra.palavra }}</p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button [mat-dialog-close]="palavra">Excluir</button>
+  </mat-dialog-actions>
+</div>

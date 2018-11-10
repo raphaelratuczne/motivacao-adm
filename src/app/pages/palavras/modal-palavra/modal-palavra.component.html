@@ -1,0 +1,14 @@
+<div class="modal-palavra">
+  <h2 mat-dialog-title>Palavra</h2>
+  <mat-dialog-content>
+    <form>
+      <mat-form-field>
+        <input matInput placeholder="Palavra" [(ngModel)]="palavra.palavra" name="palavra" maxlength="50">
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button [mat-dialog-close]="palavra">Salvar</button>
+  </mat-dialog-actions>
+</div>
