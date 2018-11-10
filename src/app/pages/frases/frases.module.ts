@@ -6,7 +6,8 @@ import {
   MatSortModule,
   MatButtonModule,
   MatIconModule,
-  MatDialogModule
+  MatDialogModule,
+  MatCardModule
 } from '@angular/material';
 
 
@@ -25,7 +26,8 @@ import { ModalFraseModule } from './modal-frase/modal-frase.module';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    ModalFraseModule
+    ModalFraseModule,
+    MatCardModule
   ],
   declarations: [FrasesComponent],
   entryComponents: [ModalFraseComponent]
