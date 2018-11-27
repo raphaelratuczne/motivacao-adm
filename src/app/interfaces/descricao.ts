@@ -1,4 +1,5 @@
 export interface Descricao {
+  alerta: string;
   gratidao: string;
   objetivo: string;
   orgulho: string;

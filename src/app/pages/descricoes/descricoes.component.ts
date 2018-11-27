@@ -24,6 +24,7 @@ export class DescricoesComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
+      alerta: new FormControl(),
       gratidao: new FormControl(),
       objetivo: new FormControl(),
       orgulho: new FormControl(),
